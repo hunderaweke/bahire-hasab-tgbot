@@ -7,7 +7,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
 logger = logging.getLogger(__name__)
-TOKEN = "6194237261:AAGbv0k-crDI4qoWE5yj_VcWmfPPQAfgckk"
+TOKEN = "6TOKEN"
 def start(update:Update,context:CallbackContext):
     user = update.effective_user.full_name
     year = datetime.now().year -8
