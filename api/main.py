@@ -1,4 +1,6 @@
 from datetime import datetime
+from io import BytesIO
+from PIL import Image, ImageDraw, ImageFont
 import logging
 from telegram import Update
 from conversations import bh, all_conversations, find_day_conversation
@@ -15,7 +17,16 @@ def start(update: Update, context: CallbackContext):
     user = update.effective_user.full_name
     year = datetime.now().year - 8
     _bh = bh._bh(year)
-    update.message.reply_markdown(f"{user} የዘንደሮ ማውጫ \n {_bh}")
+    table =f"{user} የዘንደሮ ማውጫ \n {_bh}"
+    bio = BytesIO()
+    bio.name = "template_send.png"
+    img = Image.open("Back_1.png")
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("washrab.ttf", 20)
+    draw.text((70, 80), table, (255, 255, 255), font=font)
+    img.save(bio, "PNG")
+    bio.seek(0)
+    update.message.reply_photo(bio)
 
 
 def help(update: Update, context: CallbackContext):

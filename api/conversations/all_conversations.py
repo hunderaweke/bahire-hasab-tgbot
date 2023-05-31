@@ -31,9 +31,8 @@ def send_all(update: Update, context: CallbackContext):
     bio.name = "template_send.png"
     img = Image.open("Back_1.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("zelan.ttf", 20)
+    font = ImageFont.truetype("washrab.ttf", 20)
     draw.text((70, 90), table, (255, 255, 255), font=font)
-    img.show()
     img.save(bio, "PNG")
     bio.seek(0)
     update.message.reply_photo(bio)
