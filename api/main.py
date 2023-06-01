@@ -3,7 +3,7 @@ from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 import logging
 from telegram import Update
-from conversations import bh, all_conversations, find_day_conversation
+from conversations import bh, all_conversations
 from telegram.ext import CommandHandler, CallbackContext, Updater, ConversationHandler
 
 logging.basicConfig(
@@ -17,7 +17,7 @@ def start(update: Update, context: CallbackContext):
     user = update.effective_user.full_name
     year = datetime.now().year - 8
     _bh = bh._bh(year)
-    table =f"{user} የዘንደሮ ማውጫ \n {_bh}"
+    table = f"{user} የዘንደሮ ማውጫ \n {_bh}"
     bio = BytesIO()
     bio.name = "template_send.png"
     img = Image.open("Back_1.png")
@@ -26,16 +26,11 @@ def start(update: Update, context: CallbackContext):
     draw.text((70, 80), table, (255, 255, 255), font=font)
     img.save(bio, "PNG")
     bio.seek(0)
-    update.message.reply_photo(bio,caption="እንኳን ወደ ባህረ ሀሳብ ቴሌግራም ቦት በሰላመ ምጡ")
+    update.message.reply_photo(bio, caption="እንኳን ወደ ባህረ ሀሳብ ቴሌግራም ቦት በሰላመ ምጡ")
 
 
 def help(update: Update, context: CallbackContext):
     update.message.reply_markdown("/all - የሁሉንም አመት ማውጫ ለማግኘት")
-
-
-def give_table(update: Update, context: CallbackContext):
-    year = int(update.message.text)
-    update.message.reply_markdown(bh._bh(year=year))
 
 
 def main():
