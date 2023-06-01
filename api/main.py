@@ -26,7 +26,7 @@ def start(update: Update, context: CallbackContext):
     draw.text((70, 80), table, (255, 255, 255), font=font)
     img.save(bio, "PNG")
     bio.seek(0)
-    update.message.reply_photo(bio)
+    update.message.reply_photo(bio,caption="እንኳን ወደ ባህረ ሀሳብ ቴሌግራም ቦት በሰላመ ምጡ")
 
 
 def help(update: Update, context: CallbackContext):

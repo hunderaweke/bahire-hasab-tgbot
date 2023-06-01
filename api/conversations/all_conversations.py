@@ -32,7 +32,7 @@ def send_all(update: Update, context: CallbackContext):
     img = Image.open("Back_1.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("washrab.ttf", 20)
-    draw.text((70, 90), table, (255, 255, 255), font=font)
+    draw.text((70, 80), table, (255, 255, 255), font=font)
     img.save(bio, "PNG")
     bio.seek(0)
     update.message.reply_photo(bio)
